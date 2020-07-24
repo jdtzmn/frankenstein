@@ -1,0 +1,10 @@
+{
+  "name": "frankenstein",
+  "version": "0.1.0",
+  "description": "an experiment with MutationObserver; modifying the DOM updates the webpage for everyone",
+  "main": "src/index.ts",
+  "repository": "https://github.com/jdtzmn/frankenstein",
+  "author": "jdtzmn <jdtzmn@gmail.com>",
+  "license": "MIT",
+  "private": true
+}

@@ -19,6 +19,8 @@
     "eslint": "^7.5.0",
     "eslint-config-airbnb-typescript": "^9.0.0",
     "eslint-plugin-import": "^2.22.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.11",
     "parcel": "^2.0.0-beta.1",
     "sass": "^1.26.10",
     "typescript": "^3.9.7",
@@ -28,5 +30,13 @@
     "@vercel/node": "^1.7.3",
     "axios": "^0.19.2",
     "handy-redis": "^1.8.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.ts": "eslint . --cache --fix --ext .ts"
   }
 }

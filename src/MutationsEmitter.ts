@@ -29,6 +29,10 @@ class MutationsEmitter extends EventEmitter {
   private handleMutations(mutations: MutationRecord[]) {
     this.emit('mutation', mutations);
   }
+
+  public stop(): void {
+    this.observer.disconnect();
+  }
 }
 
 export default MutationsEmitter;

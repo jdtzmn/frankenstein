@@ -1,5 +1,5 @@
 import { NowRequest, NowResponse } from '@vercel/node';
-import { getContent, setContent } from '../src/database';
+import { getContent, setContent } from '../../src/database';
 
 async function getRequest(_req: NowRequest, res: NowResponse) {
   res.setHeader('content-type', 'text/plain');

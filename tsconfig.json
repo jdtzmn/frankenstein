@@ -3,10 +3,26 @@
     "module": "commonjs",
     "noImplicitAny": true,
     "sourceMap": true,
-    "noEmit": true
+    "noEmit": true,
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "isolatedModules": true
   },
   "include": [
-    "src/**/*", "api"
+    "src",
+    "pages"
   ],
   "exclude": [
     "node_modules",

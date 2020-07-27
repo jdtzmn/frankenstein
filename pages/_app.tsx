@@ -1,27 +1,27 @@
-import { AppProps } from 'next/app'
+import { AppProps } from 'next/app';
 import axios from 'axios';
-import { SWRConfig } from 'swr'
+import { SWRConfig } from 'swr';
 
 export const api = axios.create({
-  baseURL: '/api'
+  baseURL: '/api',
 });
 
 export const fetcher = async (url: string) => {
-  const response = await api.get(url)
-  return response.data
-}
+  const response = await api.get(url);
+  return response.data;
+};
 
 function App({ Component, pageProps }: AppProps) {
   return (
     <SWRConfig
       value={{
         refreshInterval: 10000,
-        fetcher
+        fetcher,
       }}
     >
       <Component {...pageProps} />
     </SWRConfig>
-  )
+  );
 }
 
-export default App
+export default App;

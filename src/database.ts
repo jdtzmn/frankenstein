@@ -8,6 +8,7 @@ const DEFAULT_HTML = '<p>Hello! Edit me to change content on the backend</p>';
 export async function setContent(content: string): Promise<void> {
   const client = createHandyClient(REDIS_URL);
   await client.set(KEY, content);
+  client.quit();
 }
 
 export async function getContent(): Promise<string> {
@@ -20,5 +21,6 @@ export async function getContent(): Promise<string> {
     await setContent(content);
   }
 
+  client.quit();
   return content;
 }

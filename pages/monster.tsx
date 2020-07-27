@@ -1,20 +1,17 @@
 import { useRef, useEffect } from 'react'
 import Head from 'next/head'
 import { GetServerSideProps } from 'next'
-import axios from 'axios';
+import useSWR from 'swr'
 import MutationsEmitter from '../src/MutationsEmitter';
-
-const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_ENDPOINT
-});
+import { api } from './_app'
+import { getContent } from '../src/database';
 
 interface MonsterProps {
   innerHtml: string
 }
 
 export const getServerSideProps: GetServerSideProps<MonsterProps> = async () => {
-  const response = await api.get<string>('/monster')
-  const innerHtml: string = response.data
+  const innerHtml: string = await getContent()
 
   return {
     props: {
@@ -23,7 +20,9 @@ export const getServerSideProps: GetServerSideProps<MonsterProps> = async () => 
   }
 }
 
-function Monster ({ innerHtml }: MonsterProps) {
+function Monster (props: MonsterProps) {
+  const initialInnerHtml = props.innerHtml
+  const { data: innerHtml } = useSWR('/monster', undefined, { initialData: initialInnerHtml })
   const rootDiv = useRef(null)
 
   useEffect(() => {
@@ -45,7 +44,7 @@ function Monster ({ innerHtml }: MonsterProps) {
       <Head>
         <title>Frankenstein's Monster</title>
       </Head>
-      <div ref={rootDiv} dangerouslySetInnerHTML={{__html: innerHtml}} />
+      <div id="root" ref={rootDiv} dangerouslySetInnerHTML={{__html: innerHtml}} />
     </>
   );
 }
